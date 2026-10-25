@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101114">
+  <title>Pulse — Media Player</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Pulse home"><span class="brand-mark"><i></i><i></i><i></i></span><span>PULSE</span></a>
+      <div class="nav-label">LIBRARY</div>
+      <button class="nav-item active" id="libraryNav"><span class="nav-icon">▤</span> Your library</button>
+      <button class="nav-item" id="addNav"><span class="nav-icon">＋</span> Add media</button>
+      <div class="sidebar-divider"></div>
+      <div class="nav-label playlist-heading"><span>PLAYLIST</span><button id="clearPlaylist" title="Clear playlist">⌫</button></div>
+      <div id="sidebarPlaylist" class="sidebar-playlist"><div class="empty-side">Your queue is waiting.<br>Drop a track to get started.</div></div>
+      <div class="sidebar-bottom"><div class="sound-badge">♫</div><div><strong>Made for your files</strong><span>Private. Simple. Yours.</span></div></div>
+    </aside>
+
+    <section class="main-area">
+      <header class="topbar"><div class="breadcrumbs"><span>LIBRARY</span><b>/</b><strong>Now playing</strong></div><div class="top-actions"><span class="local-pill"><i></i> LOCAL PLAYER</span><button class="icon-button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">◐</button></div></header>
+      <section class="content">
+        <div class="welcome-row"><div><div class="eyebrow">YOUR PERSONAL PLAYER</div><h1>Feel every <em>beat.</em></h1><p class="intro">Your music, your mood. Pick a track and let it play.</p></div><button class="primary-button" id="chooseButton"><span>＋</span> Add media</button></div>
+
+        <div class="player-grid">
+          <section class="now-card">
+            <div class="card-top"><span class="eyebrow">NOW PLAYING</span><button class="more-button" id="moreButton" title="Add media">···</button></div>
+            <div class="visualizer-wrap" id="dropZone">
+              <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div>
+              <div class="visualizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="art-center"><span class="art-note">♫</span><span class="art-caption">PULSE<br><small>PLAY YOUR WAY</small></span></div>
+              <div class="drop-hint"><span>＋</span> Drop files here</div>
+            </div>
+            <div class="track-info"><div class="track-copy"><div class="track-title" id="trackTitle">Nothing playing yet</div><div class="track-artist" id="trackMeta">Choose a file to get started</div></div><button class="like-button" id="likeButton" aria-label="Favorite track">♡</button></div>
+            <div class="timeline"><span id="currentTime">0:00</span><input id="seekBar" type="range" min="0" max="1000" value="0" aria-label="Seek"><span id="duration">0:00</span></div>
+            <div class="controls"><button class="control-button subtle" id="shuffleButton" aria-label="Shuffle" title="Shuffle">⤨</button><button class="control-button" id="previousButton" aria-label="Previous track" title="Previous">|‹</button><button class="play-button" id="playButton" aria-label="Play" title="Play">▶</button><button class="control-button" id="nextButton" aria-label="Next track" title="Next">›|</button><button class="control-button subtle" id="repeatButton" aria-label="Repeat" title="Repeat">↻</button></div>
+            <div class="volume-row"><span>◖</span><input id="volumeBar" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume"><span class="volume-value">80%</span></div>
+          </section>
+
+          <section class="queue-card"><div class="queue-header"><div><div class="eyebrow">UP NEXT</div><h2>Your queue <span id="trackCount">0</span></h2></div><button class="text-button" id="queueAddButton">＋ Add files</button></div><div id="playlist" class="playlist"><div class="queue-empty"><div class="empty-icon">♫</div><strong>Your queue is empty</strong><p>Add audio or video files to see them here.</p><button class="outline-button" id="emptyAddButton">Choose files</button></div></div><div class="queue-footer"><span><i></i> Files stay on your device</span><span id="queueDuration">0 tracks</span></div></section>
+        </div>
+
+        <section class="tip-banner"><div class="tip-icon">✳</div><div><strong>Good sound, no setup.</strong><span>Drag audio or video files anywhere on this page to add them to your queue.</span></div><span class="tip-shortcut">TIP <b>↗</b></span></section>
+        <footer>© 2025 PULSE PLAYER <span>MADE FOR THE MOMENT</span></footer>
+      </section>
+    </section>
+  </main>
+  <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.mp4,.webm,.mov,.mkv" multiple hidden>
+  <audio id="mediaElement" preload="metadata"></audio>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
